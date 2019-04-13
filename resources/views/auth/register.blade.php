@@ -41,7 +41,7 @@
 
 
                         
-                        {{-- <div class="form-group row">
+                        <div class="form-group row">
                             <label for="birthday" class="col-md-4 col-form-label text-md-right">Birthday</label>
 
                             <div class="col-md-6">
@@ -54,7 +54,7 @@
                                 @endif
                             </div>
                         </div>
-                     --}}
+                    
 
 
                         <div class="form-group row">

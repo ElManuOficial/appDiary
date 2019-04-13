@@ -20,7 +20,7 @@ class ContactTableSeeder extends Seeder
             'indenty'=>'f',
             'user_id'=>1,
         ]);*/
-
+/*
         Contact::insert([
             'name' => Str::random(10),
             'email' => Str::random(10).'@gmail.com',
@@ -28,7 +28,7 @@ class ContactTableSeeder extends Seeder
             'phone' => '554545-4554',
             'indenty'=>'f',
             'user_id'=>1,
-        ]);
+        ]);*/
         /*
         App\Contact::insert([
             'name' => Str::random(10),
@@ -38,6 +38,7 @@ class ContactTableSeeder extends Seeder
             'indenty'=>'f',
             'user_id'=>1,
         ]);*/
+        factory(App\Contact::class,10)->create();
 
     }
 }
