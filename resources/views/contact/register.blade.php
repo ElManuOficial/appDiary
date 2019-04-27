@@ -5,12 +5,22 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Registrar Contacto</div>
+                @if($msj!="")
+                    <div class="alert {{$error?'alert-danger':'alert-success'}}" role="alert">
+                        {{$msj}}
+                    </div>
+                @endif
+                
                 <div class="card-body">
-                <form action="{{route('store')}}" method="POST">
-                    
+                <form enctype="multipart/form-data" action="{{route('store')}}" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="">
+                        <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" placeholder="">
+                        @if ($errors->has('name'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -19,6 +29,10 @@
                     <div class="form-group">
                         <label for="phone">Phone</label>
                         <input type="text" name="phone" id="phone" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="num" name="age" id="age" class="form-control" placeholder="">
                     </div>
                     <label for="ident">Identity</label>
                     <div class="form-check">
@@ -35,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         <div class="custom-file mt-3">
-                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                        <input type="file" class="custom-file-input" id="validatedCustomFile">
                         <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
                         <div class="invalid-feedback">Example invalid custom file feedback</div>
                         </div>

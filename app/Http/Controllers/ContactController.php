@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ContactRequest;
 class ContactController extends Controller
 {
     /**
@@ -24,7 +25,7 @@ class ContactController extends Controller
     public function create()
     {
         
-        return view('contact.register');//contact es la carpeta y register es la vista dentro de esa
+        return view('contact.register')->with(["error"=>false,"msj"=>""]);//contact es la carpeta y register es la vista dentro de esa
         
 
     }
@@ -35,9 +36,33 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //public function store(ContactRequest $request)
     public function store(Request $request)
     {
-        dd($request);
+
+        //dd($request);
+        try {
+            $this->validate($request,[
+            'name'=>'required',
+            'email'=>'required|email',
+            'phone'=>'required'
+            ]);
+            $objContact = new Contact();
+            $objContact->name = $request->name;
+            $objContact->age = $request->age;
+            $objContact->email = $request->email;
+            $objContact->phone = $request->phone;
+            $objContact->indenty = $request->identity;
+            $objContact->user_id = \Auth::user()->id;
+            if($objContact->save()){
+                return view("contact.register")->with(["error"=>false,"msj"=>"Guardado con exito"]);
+            }
+        } catch (\Throwable $th) {
+            return view("contact.register")->with(["error"=>true,"msj"=>$th->getMessage()]);
+        }
+
+
+        
     }
 
     /**
