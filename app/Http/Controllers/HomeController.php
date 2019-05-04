@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $objControllerContact = new ContactController();
+        $data= $objControllerContact->index();
+        return view('home')->with(['contacts'=>$data]);
     }
 }

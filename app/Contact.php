@@ -12,6 +12,10 @@ class Contact extends Model
         'age','user_id',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
 
 
